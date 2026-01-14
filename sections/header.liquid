@@ -7,8 +7,9 @@
 
   assign rows = 'top,bottom' | split: ','
   assign search_style = 'none'
+  assign show_inline_search = section.settings.show_inline_search | default: false
 
-  if section.settings.show_search
+  if section.settings.show_search and show_inline_search == false
     assign search_style = 'modal'
   endif
 
@@ -353,6 +354,18 @@
   {% if navigation_bar != blank %}
     <div class="header__row header__row--mobile desktop:hidden color-{{ section.settings.color_scheme_bottom }}">
       {{ navigation_bar }}
+    </div>
+  {% endif %}
+
+  {% comment %} Inline Search Bar Row {% endcomment %}
+  {% if show_inline_search %}
+    <div
+      class="header__row header__row--search color-{{ section.settings.color_scheme_search | default: section.settings.color_scheme_top }} section section--full-width-margin"
+      style="--border-bottom-width: {{ section.settings.border_width }}px;"
+    >
+      <div class="header__search-container">
+        {% render 'search-bar-inline' %}
+      </div>
     </div>
   {% endif %}
 </header-component>
@@ -741,6 +754,26 @@
   .header-menu .menu-list__submenu[data-active] {
     content-visibility: visible;
   }
+  /* Inline Search Bar Row Styles */
+  .header__row--search {
+    padding-block: var(--padding-sm);
+    border-bottom: var(--border-bottom-width) solid var(--color-border);
+    background-color: var(--color-background);
+  }
+
+  .header__search-container {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+    padding-inline: var(--page-margin);
+  }
+
+  @media screen and (max-width: 749px) {
+    .header__search-container {
+      max-width: 100%;
+      padding-inline: var(--padding-sm);
+    }
+  }
 {% endstylesheet %}
 
 {% unless request.design_mode %}
@@ -841,6 +874,20 @@
       "default": true
     },
     {
+      "type": "checkbox",
+      "id": "show_inline_search",
+      "label": "Show inline search bar",
+      "info": "Display a visible search bar below the header instead of a search icon",
+      "default": false
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme_search",
+      "label": "Search bar color scheme",
+      "default": "primary",
+      "visible_if": "{{ section.settings.show_inline_search }}"
+    },
+    {
       "type": "select",
       "id": "search_position",
       "label": "t:settings.search_position",
@@ -855,7 +902,7 @@
         }
       ],
       "default": "right",
-      "visible_if": "{{ section.settings.show_search }}"
+      "visible_if": "{{ section.settings.show_search and section.settings.show_inline_search == false }}"
     },
     {
       "type": "select",
@@ -872,7 +919,7 @@
         }
       ],
       "default": "top",
-      "visible_if": "{{ section.settings.show_search }}"
+      "visible_if": "{{ section.settings.show_search and section.settings.show_inline_search == false }}"
     },
     {
       "type": "header",
