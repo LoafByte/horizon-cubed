@@ -59,7 +59,7 @@
         "button_H9gpTf"
       ],
       "custom_css": [
-        "h2 {font-family: 'Food';}"
+        "h2 {font-family: \"Flood\";}"
       ],
       "name": "t:names.hero",
       "settings": {
