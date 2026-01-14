@@ -80,9 +80,7 @@
           "blocks": {}
         }
       },
-      "custom_css": [
-        "h2 {color: red !important;}"
-      ],
+      "custom_css": [],
       "settings": {
         "logo_position": "left",
         "menu_position": "left",
