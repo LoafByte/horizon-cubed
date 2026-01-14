@@ -1831,14 +1831,14 @@
         "type": "checkbox",
         "id": "enable_store_hours",
         "label": "Enable store hours validation",
-        "default": false,
+        "default": true,
         "info": "Prevent checkout outside of store operating hours"
       },
       {
         "type": "text",
         "id": "store_opening_time",
         "label": "Opening time (24-hour format)",
-        "default": "09:00",
+        "default": "02:00",
         "info": "Format: HH:MM (e.g., 09:00 for 9am)",
         "visible_if": "{{ settings.enable_store_hours == true }}"
       },
@@ -1846,7 +1846,7 @@
         "type": "text",
         "id": "store_closing_time",
         "label": "Closing time (24-hour format)",
-        "default": "17:00",
+        "default": "01:00",
         "info": "Format: HH:MM (e.g., 17:00 for 5pm)",
         "visible_if": "{{ settings.enable_store_hours == true }}"
       },

@@ -2,6 +2,12 @@
   box-sizing: border-box;
 }
 
+
+@font-face {
+  font-family: "Flood";
+  src: url("{{ 'Flood.otf' | asset_url }}") format("opentype");
+}
+
 body {
   color: var(--color-foreground);
   background: var(--color-background);
