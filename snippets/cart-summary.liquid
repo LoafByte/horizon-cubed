@@ -257,6 +257,68 @@
   </div>
 </div>
 
+{% if settings.enable_store_hours %}
+  <script
+    type="module"
+    src="{{ 'cart-store-hours.js' | asset_url }}"
+  ></script>
+
+  <cart-store-hours
+    class="cart-store-hours"
+    data-enabled="{{ settings.enable_store_hours }}"
+    data-opening-time="{{ settings.store_opening_time }}"
+    data-closing-time="{{ settings.store_closing_time }}"
+  >
+    <div class="cart-store-hours__display">
+      <p class="cart-store-hours__text cart-primary-typography">
+        {{ settings.store_hours_display }}
+      </p>
+    </div>
+    <div
+      class="cart-store-hours__error"
+      role="alert"
+      aria-live="polite"
+      aria-hidden="true"
+      tabindex="-1"
+    ></div>
+  </cart-store-hours>
+{% endif %}
+
+<script
+  type="module"
+  src="{{ 'cart-age-verification.js' | asset_url }}"
+></script>
+
+<cart-age-verification class="cart-age-verification">
+  <div class="cart-age-verification__field">
+    <label
+      for="cart-dob"
+      class="cart-age-verification__label cart-primary-typography"
+    >
+      {{ 'content.date_of_birth' | t | default: 'Date of Birth' }}
+      <span class="cart-age-verification__required" aria-label="required">*</span>
+    </label>
+    <input
+      type="date"
+      id="cart-dob"
+      class="cart-age-verification__input"
+      name="date_of_birth"
+      required
+      aria-required="true"
+      aria-invalid="false"
+      aria-describedby="cart-dob-error"
+    >
+  </div>
+  <div
+    id="cart-dob-error"
+    class="cart-age-verification__error"
+    role="alert"
+    aria-live="polite"
+    aria-hidden="true"
+    tabindex="-1"
+  ></div>
+</cart-age-verification>
+
 <div class="cart__ctas">
   <button
     type="submit"
@@ -479,6 +541,123 @@
       transition-property: grid-template-rows, opacity;
       transition-duration: var(--surface-transition-duration);
       transition-timing-function: var(--surface-transition-timing);
+    }
+  }
+
+  /* Age Verification Styles */
+  .cart-age-verification {
+    display: block;
+    width: 100%;
+    margin-block-start: var(--margin-xl);
+    margin-block-end: var(--margin-md);
+  }
+
+  .cart-age-verification__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-2xs);
+  }
+
+  .cart-age-verification__label {
+    font-size: var(--cart-font-size--sm);
+    font-weight: 500;
+    color: var(--color-foreground);
+    display: flex;
+    align-items: center;
+    gap: var(--gap-3xs);
+  }
+
+  .cart-age-verification__required {
+    color: var(--color-error, #d32f2f);
+    font-weight: 600;
+  }
+
+  .cart-age-verification__input {
+    background-color: var(--color-input-background);
+    color: var(--color-input-text);
+    border-width: var(--style-border-width-inputs);
+    border-color: var(--color-input-border);
+    border-style: solid;
+    border-radius: var(--style-border-radius-inputs);
+    padding: var(--padding-sm) var(--padding-md);
+    font-size: var(--cart-font-size--sm);
+    width: 100%;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+  }
+
+  .cart-age-verification__input:focus {
+    outline: none;
+    border-color: var(--color-foreground);
+  }
+
+  .cart-age-verification__input--error {
+    border-color: var(--color-error, #d32f2f);
+    border-width: 2px;
+  }
+
+  .cart-age-verification__error {
+    display: none;
+    color: var(--color-error, #d32f2f);
+    font-size: var(--cart-font-size--xs);
+    margin-block-start: var(--margin-2xs);
+    padding: var(--padding-xs) var(--padding-sm);
+    background-color: rgb(211 47 47 / 0.1);
+    border-radius: var(--style-border-radius-inputs);
+    line-height: 1.4;
+  }
+
+  .cart-age-verification__error--visible {
+    display: block;
+  }
+
+  @media screen and (max-width: 749px) {
+    .cart-age-verification {
+      margin-block-start: var(--margin-lg);
+      margin-block-end: var(--margin-sm);
+    }
+  }
+
+  /* Store Hours Styles */
+  .cart-store-hours {
+    display: block;
+    width: 100%;
+    margin-block-start: var(--margin-xl);
+    margin-block-end: var(--margin-sm);
+  }
+
+  .cart-store-hours__display {
+    padding: var(--padding-sm) var(--padding-md);
+    background-color: rgb(var(--color-foreground-rgb) / 0.05);
+    border-radius: var(--style-border-radius-inputs);
+    text-align: center;
+  }
+
+  .cart-store-hours__text {
+    font-size: var(--cart-font-size--sm);
+    color: var(--color-foreground);
+    margin: 0;
+  }
+
+  .cart-store-hours__error {
+    display: none;
+    color: var(--color-error, #d32f2f);
+    font-size: var(--cart-font-size--xs);
+    margin-block-start: var(--margin-2xs);
+    padding: var(--padding-xs) var(--padding-sm);
+    background-color: rgb(211 47 47 / 0.1);
+    border-radius: var(--style-border-radius-inputs);
+    line-height: 1.4;
+  }
+
+  .cart-store-hours__error--visible {
+    display: block;
+  }
+
+  @media screen and (max-width: 749px) {
+    .cart-store-hours {
+      margin-block-start: var(--margin-lg);
+      margin-block-end: var(--margin-xs);
     }
   }
 {% endstylesheet %}

@@ -163,6 +163,7 @@
     "cart_total": "Cart total",
     "checkout": "Check out",
     "collection_placeholder": "Collection title",
+    "date_of_birth": "Date of Birth",
     "discount_code": "Discount code",
     "shipping_discount_error": "Shipping discounts are shown at checkout after adding an address",
     "discount_code_error": "Discount code cannot be applied to your cart",
