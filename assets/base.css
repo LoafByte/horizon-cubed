@@ -5,7 +5,9 @@
 
 @font-face {
   font-family: "Flood";
-  src: url("{{ 'Flood.otf' | asset_url }}") format("opentype");
+  src: url("{{ 'Flood.woff2' | asset_url }}") format("woff2");
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
