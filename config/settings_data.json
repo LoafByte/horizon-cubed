@@ -61,7 +61,7 @@
     "show_add_discount_code": true,
     "show_installments": true,
     "show_accelerated_checkout_buttons": false,
-    "enable_store_hours": true,
+    "enable_store_hours": false,
     "store_opening_time": "18:00",
     "store_closing_time": "01:00",
     "store_hours_display": "Store Hours: 6pm - 1am",
@@ -90,11 +90,6 @@
       "14479319785270113485": {
         "type": "shopify://apps/zapiet-pickup-delivery/blocks/app-embed/5599aff0-8af1-473a-a372-ecd72a32b4d5",
         "disabled": false,
-        "settings": {}
-      },
-      "956229781193326493": {
-        "type": "shopify://apps/zapiet-eats/blocks/app-embed/7c83e2e6-1aca-4040-a553-d4c07238264c",
-        "disabled": true,
         "settings": {}
       }
     },
