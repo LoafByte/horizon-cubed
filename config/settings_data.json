@@ -86,6 +86,13 @@
     "variant_button_width": "equal-width-buttons",
     "button_font_weight_secondary": "default",
     "content_for_index": [],
+    "blocks": {
+      "956229781193326493": {
+        "type": "shopify://apps/zapiet-eats/blocks/app-embed/7c83e2e6-1aca-4040-a553-d4c07238264c",
+        "disabled": false,
+        "settings": {}
+      }
+    },
     "color_schemes": {
       "scheme-1": {
         "settings": {
